@@ -1,0 +1,20 @@
+name: ci-microservice-workflow
+on: push
+jobs:
+  check-application:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20     
+      - run: npm install
+      - run: tsc     
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2    
+ 
+  
